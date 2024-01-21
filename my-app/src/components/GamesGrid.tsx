@@ -16,19 +16,20 @@ interface FetchGamesResponse {
 
 const GamesGrid = () => {
   const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   useEffect(() => {
     apiClient
       .get<FetchGamesResponse>("/games")
       .then((res) => setGames(res.data.results))
       .catch((err) => setError(err.message));
-  });
+  }, []);
 
   return (
     <>
+      <Center>{error && <Text>{error}</Text>}</Center>
+
       <Center>
-        {error && <Text>{error}</Text>}
         <ul>
           {games.map((game) => (
             <li key={game.id}>{game.name}</li>
