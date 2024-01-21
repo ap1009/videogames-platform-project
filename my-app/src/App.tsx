@@ -1,7 +1,21 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button, ButtonGroup, Box, useColorMode } from "@chakra-ui/react";
+import { useState } from "react";
+import NavigationBar from "./components/NavigationBar";
+import GamesGrid from "./components/GamesGrid";
 
 function App() {
-  return <></>;
+  const [toggleOn, setOnToggle] = useState(false);
+
+  const handleOnToggle = () => {
+    setOnToggle(!toggleOn);
+  };
+
+  return (
+    <>
+      <NavigationBar onToggle={handleOnToggle} toggleState={toggleOn} />
+      <GamesGrid />
+    </>
+  );
 }
 
 export default App;
